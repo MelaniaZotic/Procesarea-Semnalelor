@@ -1,0 +1,20 @@
+EX 3
+a) Asa cum am folosit si in excertiile anterioare, intervalul de timp dintre 2 esantioane este perioada de esantionare care
+este inversul frecventei de esantionare.
+Daca frecventa de esantionare este de 2000Hz atunci perioada de esantionare este de 1/2000hz = 0.0005sec/esantion
+b)
+Numarul total de esantioane = frecventa de esantioane x durata in secunde
+
+Marimea totala de biti = nr total de esantioane x marimea unui esantion
+
+Marimea totala in bytes = Marimea totala in biti/8 (1byte= 8 biti)
+
+durata(1h) = 3600 secunde
+
+Asadar,
+
+Numarul total de esantioane = 2000Hz x 3600 Hz = 7.200.000 esantioane
+
+Marimea totala de biti = 7.200.000 esantioane x 4 biti/esantion = 28.800.000 biti
+
+Marimea totala de bytes = 28.800.000/8 = 3.600.000 bytes = 3.6MB
