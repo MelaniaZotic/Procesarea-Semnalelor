@@ -39,7 +39,26 @@ plot_matrix(n, f)
 # Aceasta este o funcție care verifică dacă toate elementele a două matrice sunt apropiate în ceea ce privește valorile lor.
 
 def unit_matrix(f):
+    # Această linie corectată va verifica în mod corect dacă f este o matrice unitară, comparând produsul dintre f și
+    # conjugatul său transpus cu matricea identitate de dimensiune n x n.
+
     return np.iscomplexobj(f) and np.allclose(np.dot(f, np.conj(f).T), np.dot(n, np.identity(n)))
+
+
+# np.iscomplexobj(f)
+
+# Aceasta este o funcție din NumPy care verifică dacă f este un obiect complex, adică dacă matricea f conține numere
+# complexe.
+
+# np.conj(f).T
+
+# np.conj(f) calculează conjugatul complex al fiecărui element din matricea f. Conjugatul complex al unui număr complex
+# este numărul cu partea imaginară de semn opus.
+
+# .T este o proprietate a array-urilor NumPy care transpune matricea, schimbând rândurile cu coloanele.
+
+# np.dot(f, np.conj(f).T)
+# np.dot efectuează o înmulțire de matrice între f și conjugatul transpus al lui f
 
 
 if unit_matrix(f):
