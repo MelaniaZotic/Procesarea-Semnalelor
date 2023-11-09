@@ -83,6 +83,7 @@ sd.wait()
 
 # semnalul square
 sd.play(semnal_square, samplerate=frecv_es)
+# Funcția sd.wait() este folosită pentru a aștepta finalizarea redării semnalului înainte de a trece la următorul.
 sd.wait()
 
 filename = "semnal_sinusoidal.wav"

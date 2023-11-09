@@ -2,13 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #Definirea parametrilor:
+# Amplitudinea semnalului (înălțimea maximă).
 amplitudine = 1
-frecventa = 5
-faza = np.pi / 4
-t = np.arange(0, 1, 0.01)
+frecventa = 5 # Numărul de oscilații complete într-o secundă.
+faza = np.pi / 4 # Deplasarea semnalului pe axa orizontală.
+t = np.arange(0, 1, 0.01) # Un vector de timp care începe de la 0 și se termină la 1, cu un pas de 0,01 secunde.
 
-semnal_sinus = amplitudine * np.sin(2 * np.pi * frecventa * t + faza)
-semnal_cosinus = amplitudine * np.sin(2 * np.pi * frecventa * t + faza + np.pi/2)
+semnal_sinus = amplitudine * np.sin(2 * np.pi * frecventa * t + faza) # semnal sinosidal
+semnal_cosinus = amplitudine * np.sin(2 * np.pi * frecventa * t + faza + np.pi/2) # semnal sinusoidal cu o replasare de pi/2 astfel e transformat in cosinus
+
 
 plt.figure(figsize=(12, 8))
 

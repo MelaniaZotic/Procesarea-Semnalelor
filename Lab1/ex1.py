@@ -1,16 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
-#c
 
-f_s = 200
-T_s = 1 / f_s
+# c
 
-n = np.arange(0, 0.03, T_s)
+f_s = 200  # f_s este frecventa de esantionare - nr de esantioane pe secunda
+T_s = 1 / f_s  # T_s este perioada de esantionare - intervalul de timp intre 2 esantioane consecutive
 
-x_n = np.cos(520 * np.pi * n + np.pi/3)
-y_n = np.cos(280 * np.pi * n - np.pi/3)
-z_n = np.cos(120 * np.pi * n + np.pi/3)
+n = np.arange(0, 0.03, T_s)  # Vector de la 0 la 0.03 cu pasul 0.005
 
+# semnale cosinus cu frecvente si faze diferite
+x_n = np.cos(520 * np.pi * n + np.pi / 3)
+y_n = np.cos(280 * np.pi * n - np.pi / 3)
+z_n = np.cos(120 * np.pi * n + np.pi / 3)
+
+# plotul figurii cu functia stem() care reprezinta semnalele discrete sub forma unor linii verticale
 plt.figure(figsize=(16, 14))
 plt.subplot(3, 1, 1)
 plt.stem(n, x_n)
@@ -32,16 +35,16 @@ plt.title('z(n) = cos(120*pi*t - pi/3)')
 plt.xlabel('Eșantioane n')
 plt.ylabel('z_n')
 plt.grid(True)
-#plt.show()
+# plt.show()
 
 
-#a,b
+# a,b
+# aici se foloseste un pas mai mic de 0.0005
 t = np.arange(0, 0.03, 0.0005)
 
-x_t = np.cos(520 * np.pi * t + np.pi/3)
-y_t = np.cos(280 * np.pi * t - np.pi/3)
-z_t = np.cos(120 * np.pi * t + np.pi/3)
-
+x_t = np.cos(520 * np.pi * t + np.pi / 3)
+y_t = np.cos(280 * np.pi * t - np.pi / 3)
+z_t = np.cos(120 * np.pi * t + np.pi / 3)
 
 plt.figure(figsize=(16, 14))
 plt.subplot(3, 1, 1)
@@ -69,4 +72,3 @@ plt.stem(n, z_n, markerfmt='go')
 plt.grid(True)
 
 plt.show()
-

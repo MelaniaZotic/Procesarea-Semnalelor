@@ -7,6 +7,7 @@ frecventa = 5
 t = np.arange(0, 1, 0.01)
 
 faze = [np.pi / 2, np.pi / 3, np.pi / 4, np.pi / 6]
+#  list comprehension pentru a genera semnale sinusoidale având diferite faze
 semnale = [amplitudine * np.sin(2 * np.pi * frecventa * t + faza) for faza in faze]
 
 # Afisarea semnalelor

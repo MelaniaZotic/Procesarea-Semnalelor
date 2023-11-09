@@ -66,7 +66,7 @@ plt.ylabel('Amplitudine')
 plt.grid(True)
 #plt.show()
 
-#e
+#e- genereasa o imagine 2D(semnal in 2 dimensiuni) cu valori aleatorii
 dimensiune = (128, 128)
 semnal_2d = np.random.rand(dimensiune[0], dimensiune[1])
 plt.imshow(semnal_2d, cmap='Accent', interpolation='none')
@@ -76,7 +76,8 @@ plt.xlabel('Coloane')
 plt.ylabel('Linii')
 #plt.show()
 
-#f
+#f - imagine 2D unde intensitatea creste diagonal
+
 dimensiune = (128, 128)
 semnal_2d = np.zeros(dimensiune)
 for i in range(min(dimensiune)):
