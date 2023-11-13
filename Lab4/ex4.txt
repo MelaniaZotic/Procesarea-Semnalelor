@@ -1,0 +1,5 @@
+Pentru a asigura o eșantionare adecvată a semnalului provenit din ˆınregistrarea unui contrabas, trebuie să respectăm
+criteriul Nyquist. Conform acestui criteriu, frecvența de eșantionare trebuie să fie cel puțin de două ori mai mare
+decât frecvența maximă a semnalului. În cazul contrabasului, frecvența maximă este de 200 Hz.
+
+frecventa Nyquist = 2 x Frecventa maxima = 2 x 200Hz = 400Hz.   Trebuie sa esantionam cu o frecventa de cel putin 400Hz

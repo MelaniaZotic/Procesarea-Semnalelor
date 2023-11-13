@@ -1,0 +1,11 @@
+SNRdB  = 10 x log10(P semnal/ P zgomot)
+
+SNRdB = este raportul semnal-zgomot exprimat in decibeli
+Psemnal este putere semnalului exprimata in unitati lineare(nu in dB)
+Pzgomot este puterea zgomotului in unitati linerare(nu in dB)
+
+Pzgomot = Psemnal/ 10 ^ (SNRdB/10)
+
+P zgomot = 10^(90/10)/ 10^(80/10)
+
+Pzgomot = 10^9/10^8 = 10

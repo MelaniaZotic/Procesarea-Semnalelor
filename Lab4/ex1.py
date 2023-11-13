@@ -21,7 +21,7 @@ def dft(x):
 
 
 # Definim dimensiunile pentru care vrem să testăm DFT
-N = [128, 256, 512, 1024, 2048, 4096]
+N = [128, 256, 512, 1024, 2048, 4096, 8192]
 
 # Inițializăm listele pentru a stoca timpii de execuție
 times_custom = []

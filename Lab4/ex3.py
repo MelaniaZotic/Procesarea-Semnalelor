@@ -1,59 +1,49 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Parametrii semnalului
-f_original = 5  # frecventa semnalului original in Hz
-f_sampling = 10  # frecventa de esantionare in Hz, Nyquist satisfied
-t_max = 2       # durata semnalului in secunde
+def generare_semnal(frecventa, amplitudine=1, faza=0, durata=1, frecventa_eșantionare=1):
+    timp = np.arange(0, durata, 1/frecventa_eșantionare)
+    semnal = amplitudine * np.sin(2 * np.pi * frecventa * timp + faza)
+    return timp, semnal
 
-# Calculam perioada de esantionare
-t_sampling = 1 / f_sampling
+def eșantionare(frecventa_eșantionare, durata=1):
+    timp_eșantionat = np.arange(0, durata, 1/frecventa_eșantionare)
+    return timp_eșantionat
 
-# Generam axa timpului pentru semnalul continuu si pentru esantioane
-t_continuous = np.linspace(0, t_max, 1000)  # timp pentru semnalul continuu
-t_samples = np.arange(0, t_max, t_sampling)  # momentele de esantionare
+# Parametri pentru semnalul inițial
+frecventa_inițială = 5
+amplitudine_inițială = 1
+faza_inițială = 0
+durata_semnal = 1
+frecventa_eșantionare_noua = 20  # Modificare a ratei de eșantionare
 
-# Generam semnalul sinusoidal original
-signal_original = np.sin(2 * np.pi * f_original * t_continuous)
+# Generare semnal inițial cu noua frecvență de eșantionare
+timp_nou, semnal_inițial_nou = generare_semnal(frecventa_inițială, amplitudine_inițială, faza_inițială, durata_semnal, frecventa_eșantionare_noua)
 
-# Semnalele de frecvente diferite care vor produce aliere
-f_alias1 = f_sampling - f_original  # 5 Hz
-f_alias2 = f_sampling + f_original  # 15 Hz
+# Eșantionare semnal inițial cu noua frecvență de eșantionare
+timp_eșantionat_nou = eșantionare(frecventa_eșantionare_noua, durata_semnal)
 
-# Generam cele doua semnale care vor cauza aliere
-signal_alias1 = np.sin(2 * np.pi * f_alias1 * t_continuous)
-signal_alias2 = np.sin(2 * np.pi * f_alias2 * t_continuous)
+# Generare alte două semnale cu frecvențe diferite
+frecventa_2 = 2
+frecventa_3 = 8
+_, semnal_2_nou = generare_semnal(frecventa_2, amplitudine_inițială, faza_inițială, durata_semnal, frecventa_eșantionare_noua)
+_, semnal_3_nou = generare_semnal(frecventa_3, amplitudine_inițială, faza_inițială, durata_semnal, frecventa_eșantionare_noua)
 
-# Eșantionăm toate cele trei semnale
-samples_original = np.sin(2 * np.pi * f_original * t_samples)
-samples_alias1 = np.sin(2 * np.pi * f_alias1 * t_samples)
-samples_alias2 = np.sin(2 * np.pi * f_alias2 * t_samples)
+# Desenarea graficelor
+plt.figure(figsize=(12, 6))
 
-# Crearea figurii cu subploturi
-plt.figure(figsize=(12, 8))
-
-# Semnalul original
 plt.subplot(3, 1, 1)
-plt.plot(t_continuous, signal_original, label='Semnal Original Continuu')
-plt.stem(t_samples, samples_original, 'r', markerfmt='ro', label='Eșantioane Original', basefmt=" ")
-plt.title('Semnal Original și Eșantioanele Sale')
-plt.legend()
+plt.plot(timp_nou, semnal_inițial_nou, label='Semnal Inițial')
+plt.title('Semnal Inițial cu noua frecvență de eșantionare')
 
-# Primul semnal aliat
 plt.subplot(3, 1, 2)
-plt.plot(t_continuous, signal_alias1, label='Semnal Aliat 1 Continuu')
-plt.stem(t_samples, samples_alias1, 'g', markerfmt='go', label='Eșantioane Aliat 1', basefmt=" ")
-plt.title('Primul Semnal Aliat și Eșantioanele Sale')
-plt.legend()
+plt.plot(timp_eșantionat_nou, semnal_2_nou, label=f'Semnal {frecventa_2} Hz eșantionat cu noua frecvență de eșantionare')
+plt.title(f'Semnal {frecventa_2} Hz eșantionat cu noua frecvență de eșantionare')
 
-# Al doilea semnal aliat
 plt.subplot(3, 1, 3)
-plt.plot(t_continuous, signal_alias2, label='Semnal Aliat 2 Continuu')
-plt.stem(t_samples, samples_alias2, 'm', markerfmt='mo', label='Eșantioane Aliat 2', basefmt=" ")
-plt.title('Al Doilea Semnal Aliat și Eșantioanele Sale')
-plt.legend()
+plt.plot(timp_eșantionat_nou, semnal_3_nou, label=f'Semnal {frecventa_3} Hz eșantionat cu noua frecvență de eșantionare')
+plt.title(f'Semnal {frecventa_3} Hz eșantionat cu noua frecvență de eșantionare')
 
-# Afișare figură
 plt.tight_layout()
-plt.savefig('fara_aliere.png')
+plt.savefig("ex3.png")
 plt.show()
