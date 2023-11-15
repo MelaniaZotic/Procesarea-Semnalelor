@@ -31,3 +31,4 @@ plt.ylabel('Timp')
 plt.colorbar(label='Amplitudine')
 plt.savefig("ex6.png")
 plt.show()
+

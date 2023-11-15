@@ -1,25 +1,12 @@
-import sounddevice as sd
-import librosa
 import librosa.display
 import numpy as np
-import soundfile as sf
 import matplotlib.pyplot as plt
 
-# Setările pentru înregistrare
-duration = 5  # Durata înregistrării în secunde
-sample_rate = 22050  # Rata de eșantionare
-
-# Înregistrați sunetul
-print("Începeți să vorbiți sau să cântați!")
-audio_data = sd.rec(int(duration * sample_rate), samplerate=sample_rate, channels=1)
-sd.wait()
-
-# Salvați înregistrarea într-un fișier audio
+# Calea către fișierul audio înregistrat
 file_path = "vocal_recording.wav"
-sf.write(file_path, audio_data.flatten(), sample_rate)
 
 # Încărcați înregistrarea audio utilizând Librosa
-y, sr = librosa.load(file_path, sr=sample_rate)
+y, sr = librosa.load(file_path, sr=None)
 
 # Afișați spectrograma
 plt.figure(figsize=(10, 4))
@@ -28,3 +15,7 @@ plt.colorbar(format='%+2.0f dB')
 plt.title('Spectrograma')
 plt.savefig("ex5.png")
 plt.show()
+
+# Spectrograma este o reprezentare vizuală a spectrului de frecvență al unui semnal audio în funcție de timp.
+# Pe axa orizontală avem timpul, pe axa verticală avem frecvența, iar intensitatea culorilor indică magnitudinea
+# spectrului la o anumită frecvență și timp
