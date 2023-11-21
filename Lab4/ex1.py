@@ -21,7 +21,7 @@ def dft(x):
 
 
 # Definim dimensiunile pentru care vrem să testăm DFT
-N = [128, 256, 512, 1024, 2048, 4096, 8192]
+N = [128, 256, 512, 1024]
 
 # Inițializăm listele pentru a stoca timpii de execuție
 times_custom = []
@@ -62,7 +62,7 @@ plt.plot(N, times_custom_ms, label='Implementarea proprie', marker='o')
 plt.plot(N, times_numpy_ms, label='numpy.fft', marker='x')
 
 # Setăm scara logaritmică pentru axa Oy în baza 10
-plt.yscale('log', base=10)  # Corectăm 'basey' în 'base'
+plt.yscale('log', base=10)
 plt.gca().yaxis.set_major_formatter(ticker.ScalarFormatter())
 
 # Adăugăm titlul și etichetele axelor
