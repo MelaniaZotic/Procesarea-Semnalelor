@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from scipy import misc
 
 # Definirea funcției de atenuare în funcție de SNR
+
 def attenuate_high_frequencies(image, snr_threshold):
     # Calcularea Fourier Transform a imaginii
     image_fft = np.fft.fft2(image)
