@@ -1,16 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Generarea seriei de timp
 np.random.seed(42)
 
-# Definirea componentelor
 N = 1000
 t = np.arange(N)
-trend = 0.02 * t**2
+trend = 0.02 * t ** 2
 seasonality = 10 * np.sin(2 * np.pi * t / 50) + 5 * np.cos(2 * np.pi * t / 30)
 noise = np.random.normal(0, 2, N)
 
-# Generarea seriei de timp
 time_series = trend + seasonality + noise
 
 # Desenarea seriei de timp și componentelor separat
@@ -36,5 +35,5 @@ plt.legend()
 plt.title('Zgomot')
 
 plt.tight_layout()
+plt.savefig("ex1.png")
 plt.show()
-
