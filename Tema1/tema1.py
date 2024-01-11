@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from scipy import misc, ndimage
 from scipy.fft import dctn, idctn
 
+
 # sarcina 1 - Completați algoritmul JPEG incluzând toate blocurile din imagine.
 
 
@@ -21,15 +22,16 @@ def jpeg_compress_decompress(image, quantization_matrix, block_size=8):
     for i in range(0, height_padded, block_size):
         for j in range(0, width_padded, block_size):
             block = image_padded[i:i + block_size, j:j + block_size]
-            dct_block = dctn(block, norm='ortho') # Aplicarea transformatei DCT
-            quantized_block = np.round(dct_block / quantization_matrix) # Cuantizarea coeficienților DCT
+            dct_block = dctn(block, norm='ortho')  # Aplicarea transformatei DCT
+            quantized_block = np.round(dct_block / quantization_matrix)  # Cuantizarea coeficienților DCT
             compressed_image[i:i + block_size, j:j + block_size] = quantized_block
 
     # Aplic Inverse DCT pentru fiecare bloc
     for i in range(0, height_padded, block_size):
         for j in range(0, width_padded, block_size):
             quantized_block = compressed_image[i:i + block_size, j:j + block_size]
-            idct_block = idctn(quantized_block * quantization_matrix, norm='ortho') # Aplicarea transformatei DCT Inverse
+            idct_block = idctn(quantized_block * quantization_matrix,
+                               norm='ortho')  # Aplicarea transformatei DCT Inverse
             decompressed_image[i:i + block_size, j:j + block_size] = idct_block
 
     return compressed_image, decompressed_image[:height, :width]
@@ -71,13 +73,16 @@ plt.show()
 from skimage import color
 from scipy.misc import face
 
+
 # Functie pentru conversia unei imagini din format RGB in format YCbCr
 def rgb2ycbcr(rgb_image):
     return color.rgb2ycbcr(rgb_image)
 
+
 # Functie pentru conversia unei imagini din format YCbCr inapoi in format RGB
 def ycbcr2rgb(ycbcr_image):
     return color.ycbcr2rgb(ycbcr_image)
+
 
 # Functie pentru aplicarea procesului de compresie si decompresie JPEG pe o imagine color
 def apply_jpeg_on_color_image(color_image, quantization_matrix):
@@ -85,11 +90,11 @@ def apply_jpeg_on_color_image(color_image, quantization_matrix):
     ycbcr_image = rgb2ycbcr(color_image)
 
     compressed_channels = []  # Lista pentru stocarea canalelor comprimate
-    decompressed_channels = [] # Lista pentru stocarea canalelor decomprimate
+    decompressed_channels = []  # Lista pentru stocarea canalelor decomprimate
 
     # Proceseaza fiecare canal (Y, Cb, Cr) separat
     for i in range(3):
-        channel = ycbcr_image[:, :, i] # Extragere canal individual
+        channel = ycbcr_image[:, :, i]  # Extragere canal individual
         compressed, decompressed = jpeg_compress_decompress(channel, quantization_matrix)
         compressed_channels.append(compressed)
         decompressed_channels.append(decompressed)
@@ -123,12 +128,10 @@ plt.show()
 
 # sarcina 3 - Extindeți algoritmul pentru compresia imaginii până la un prag MSE impus de utilizator.
 def calculate_mse(image1, image2):
-
     return np.mean((image1 - image2) ** 2)
 
 
 def adjust_quantization_for_mse(image, initial_quantization_matrix, mse_threshold, max_iterations=50):
-
     quantization_matrix = initial_quantization_matrix.copy()
     iteration = 0
 
@@ -147,11 +150,13 @@ def adjust_quantization_for_mse(image, initial_quantization_matrix, mse_threshol
 
     return decompressed_image, quantization_matrix, current_mse
 
+
 # Definesc un prag MSE mai mic pentru demonstrație
 small_mse_threshold = 200
 
 # Aplic compresia JPEG ajustată pentru pragul MSE
-adjusted_image, adjusted_quantization_matrix, achieved_mse = adjust_quantization_for_mse(image, quantization_matrix, small_mse_threshold)
+adjusted_image, adjusted_quantization_matrix, achieved_mse = adjust_quantization_for_mse(image, quantization_matrix,
+                                                                                         small_mse_threshold)
 
 # Afisez imaginile
 plt.figure(figsize=(12, 6))
@@ -161,4 +166,5 @@ plt.title('Original Image')
 plt.subplot(122)
 plt.imshow(adjusted_image, cmap=plt.cm.gray)
 plt.title(f'Adjusted Image (MSE: {achieved_mse:.2f})')
+
 plt.show()

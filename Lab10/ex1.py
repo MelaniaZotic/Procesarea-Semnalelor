@@ -17,6 +17,8 @@ plt.ylabel('Frequency')
 plt.grid(True)
 plt.show()
 
+mean_of_sample_uni = np.mean(sample_uni)
+print(mean_of_sample_uni)
 # Parameters for the bidimensional Gaussian distribution
 mean_bi = [0, 0]  # Placeholder mean vector
 covariance_bi = [[1, 0], [0, 1]]  # Placeholder covariance matrix
@@ -33,3 +35,6 @@ plt.ylabel('Y value')
 plt.grid(True)
 plt.axis('equal')  # Equal scaling by x and y axes
 plt.show()
+
+mean_of_sample_bi = np.mean(sample_bi, axis=0)
+print(mean_of_sample_bi)
